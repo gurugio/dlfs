@@ -16,6 +16,12 @@ def relu(x):
 def identity_function(x):
     return x
 
+def softmax(a):
+    c = np.max(a)
+    exp_a = np.exp(a - c)
+    sum_exp_a = np.sum(exp_a)
+    y = exp_a / sum_exp_a
+    return y
 
 # neural network?
 def init_network():
@@ -43,7 +49,34 @@ def forward(network, x):
 
     return y
 
-network = init_network()
-x = np.array([1.0, 0.5])
-y = forward(network, x)
-print(y)
+# network = init_network()
+# x = np.array([1.0, 0.5])
+# y = forward(network, x)
+# print(y)
+
+# y = softmax(np.array([0.3, 2.9, 4.0]))
+# print(y)
+# print(np.sum(y))
+
+from chap3_minist import load_mnist
+from PIL import Image
+
+def img_show(img):
+    pil_img = Image.fromarray(np.uint8(img))
+    pil_img.show()
+
+(x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=False)
+print(x_train.shape, t_train.shape)
+print(x_test.shape, t_test.shape)
+
+img = x_train[0]
+label = t_train[0]
+print(label)
+
+print(img.shape)
+img = img.reshape(28, 28)
+print(img.shape)
+
+img_show(img)
+
+
