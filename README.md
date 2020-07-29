@@ -1,2 +1,1 @@
-# dlfs
-Exercises of "Deep learning from scratch"
+# Exercises of "Deep learning from scratch"
